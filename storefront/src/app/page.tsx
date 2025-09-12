@@ -22,7 +22,10 @@ export default async function Home() {
           priority
         />
         <h1 className="text-2xl font-semibold">{shop?.name ?? "Saleor"}</h1>
-        <p className="text-sm opacity-80">Conectado a la API de Maxwell’s Electrónica</p>
+        <div className="text-sm opacity-80 space-y-1">
+          <p>Conectado a la API de Maxwell’s Electrónica</p>
+          <p>Idiomas: Español e Inglés • Monedas: HNL y USD</p>
+        </div>
       </main>
     </div>
   );

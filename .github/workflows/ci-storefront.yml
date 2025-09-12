@@ -1,0 +1,31 @@
+name: ci-storefront
+
+on:
+  push:
+    branches: [ master, main ]
+    paths:
+      - 'storefront/**'
+      - '.github/workflows/ci-storefront.yml'
+  pull_request:
+    branches: [ master, main ]
+    paths:
+      - 'storefront/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'storefront/package-lock.json'
+      - name: Install deps
+        run: npm ci
+        working-directory: storefront
+      - name: Build
+        run: npm run build
+        working-directory: storefront

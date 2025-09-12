@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Storefront para Maxwell's Electrónica: Next.js (App Router), Tailwind, conexión a Saleor. Variables en `.env.local`.
 
 ## Getting Started
 
