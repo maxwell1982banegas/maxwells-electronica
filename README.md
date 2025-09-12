@@ -25,5 +25,7 @@ i18n
 - Rutas soportadas: /es y /en (por defecto / apunta al contenido compartido)
 
 Notas
+- En Dashboard > Configuration > Plugins, activa el "Dummy Payment" para probar el checkout.
+- Para Mercado Pago sandbox, configura variables y usa el botón de prueba en la home del storefront.
 - Cambia credenciales del admin en el Dashboard.
 - Dominio sugerido: maxwells-electronica.com
