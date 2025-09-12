@@ -26,6 +26,6 @@ i18n
 
 Notas
 - En Dashboard > Configuration > Plugins, activa el "Dummy Payment" para probar el checkout.
-- Para Mercado Pago sandbox, configura variables y usa el botón de prueba en la home del storefront.
+- Para PayPal sandbox, configura variables en storefront/.env.local y usa el botón de prueba en la home del storefront.
 - Cambia credenciales del admin en el Dashboard.
 - Dominio sugerido: maxwells-electronica.com

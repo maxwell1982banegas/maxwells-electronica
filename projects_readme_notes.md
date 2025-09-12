@@ -1,9 +1,9 @@
-Pagos - Mercado Pago (sandbox)
+Pagos - PayPal (sandbox)
 
-Para activar Mercado Pago en entorno de pruebas:
+Para activar PayPal en entorno de pruebas:
 1) Crea/usa cuenta Mercado Pago Developer y obtén credenciales sandbox.
-   - Public Key (frontend)
-   - Access Token (backend)
+- Client ID (frontend/backend)
+- Client Secret (backend)
 2) Backend Saleor:
    - Saleor no trae integrador nativo oficial de Mercado Pago; opciones:
      a) Usar el gateway Dummy para pruebas de flujo de checkout.
@@ -12,9 +12,13 @@ Para activar Mercado Pago en entorno de pruebas:
 
 Variables sugeridas
 - FRONTEND (storefront/.env.local):
-  NEXT_PUBLIC_MP_PUBLIC_KEY={{MP_PUBLIC_KEY}}
+  NEXT_PUBLIC_PAYPAL_CLIENT_ID={{PAYPAL_CLIENT_ID}}
 
-- BACKEND (saleor env): Se requiere app/servicio integrador externo. Para pruebas con Dummy no hace falta.
+- BACKEND (storefront/.env.local):
+  PAYPAL_CLIENT_ID={{PAYPAL_CLIENT_ID}}
+  PAYPAL_CLIENT_SECRET={{PAYPAL_CLIENT_SECRET}}
+  PAYPAL_API_BASE=https://api-m.sandbox.paypal.com
+  PAYPAL_CURRENCY=USD
 
 Siguientes pasos si confirmas credenciales:
-- Implemento una App simple (Node) que reciba createPreference, redireccione, e integre notificaciones IPN/webhooks, y capture/aplique pagos en Saleor via GraphQL.
+- Implemento endpoints para crear/capturar órdenes y, si lo deseas, conecto el flujo de checkout de Saleor para registrar pagos reales (o usar Dummy mientras tanto).

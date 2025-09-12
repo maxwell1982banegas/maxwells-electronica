@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { gql } from "@/lib/saleorClient";
-import MercadoPagoTest from "@/components/MercadoPagoTest";
+import PayPalTest from "@/components/PayPalTest";
 
 async function getShop() {
   const data = await gql<{ shop: { name: string } }>({
@@ -27,7 +27,7 @@ export default async function Home() {
           <p>Conectado a la API de Maxwell’s Electrónica</p>
           <p>Idiomas: Español e Inglés • Monedas: HNL y USD</p>
         </div>
-        <MercadoPagoTest />
+<PayPalTest />
       </main>
     </div>
   );
