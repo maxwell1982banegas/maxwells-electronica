@@ -21,4 +21,6 @@ Variables sugeridas
   PAYPAL_CURRENCY=USD
 
 Siguientes pasos si confirmas credenciales:
+- Para sincronizar con Saleor, crea un token en Dashboard > Configuration > Service Accounts (o Token API) y colócalo en SALEOR_API_TOKEN en storefront/.env.local.
+- En el endpoint de captura se intentará marcar el pedido como pagado si provees saleorOrderId.
 - Implemento endpoints para crear/capturar órdenes y, si lo deseas, conecto el flujo de checkout de Saleor para registrar pagos reales (o usar Dummy mientras tanto).
