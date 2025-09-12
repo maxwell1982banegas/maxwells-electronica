@@ -26,6 +26,13 @@ i18n
 
 Notas
 
+Deploy en Vercel (recomendado)
+- Root Directory: storefront
+- Framework Preset: Next.js
+- Build Command: npm run build
+- Output Directory: .next
+- Install Command: npm ci
+
 Rutas útiles del storefront
 - Healthcheck: /health (consulta shop.name)
 - Checkout demo: /es/checkout (crea checkout con un Variant ID)
