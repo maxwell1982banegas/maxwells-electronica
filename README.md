@@ -25,6 +25,10 @@ i18n
 - Rutas soportadas: /es y /en (por defecto / apunta al contenido compartido)
 
 Notas
+
+Rutas útiles del storefront
+- Healthcheck: /health (consulta shop.name)
+- Checkout demo: /es/checkout (crea checkout con un Variant ID)
 - En Dashboard > Configuration > Plugins, activa el "Dummy Payment" para probar el checkout.
 - Para PayPal sandbox, configura variables en storefront/.env.local y usa el botón de prueba en la home del storefront.
 - Cambia credenciales del admin en el Dashboard.
