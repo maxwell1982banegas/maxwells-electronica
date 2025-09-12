@@ -37,6 +37,7 @@ Rutas útiles del storefront
 - Healthcheck: /health (consulta shop.name)
 - Checkout demo: /es/checkout (crea checkout con un Variant ID)
 - En Dashboard > Configuration > Plugins, activa el "Dummy Payment" para probar el checkout.
+- Por defecto, si no configuras NEXT_PUBLIC_SALEOR_API_URL, el storefront usará https://demo.saleor.io/graphql/ para que el deploy funcione.
 - Para PayPal sandbox, configura variables en storefront/.env.local y usa el botón de prueba en la home del storefront.
 - Cambia credenciales del admin en el Dashboard.
 - Dominio sugerido: maxwells-electronica.com

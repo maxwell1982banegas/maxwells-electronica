@@ -1,4 +1,5 @@
-export const SALEOR_API_URL = process.env.NEXT_PUBLIC_SALEOR_API_URL ?? "http://localhost:18000/graphql/";
+// Fallback a la demo pública si no hay variable definida (útil en Vercel sin configuración inicial)
+export const SALEOR_API_URL = process.env.NEXT_PUBLIC_SALEOR_API_URL ?? "https://demo.saleor.io/graphql/";
 
 type GqlRequestOptions = {
   query: string;

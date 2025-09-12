@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 export default function PayPalTest() {
+  const publicClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
   const [orderId, setOrderId] = useState<string>("");
 
   const createOrder = async () => {
@@ -41,6 +42,14 @@ export default function PayPalTest() {
       alert("Error capturando la orden. Revisa consola.");
     }
   };
+
+  if (!publicClientId) {
+    return (
+      <div className="mt-4 p-3 rounded border bg-yellow-50 text-yellow-800 text-sm">
+        PayPal no configurado. Define variables en entorno (NEXT_PUBLIC_PAYPAL_CLIENT_ID, PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET) para habilitar el botón.
+      </div>
+    );
+  }
 
   return (
     <div className="mt-4 flex flex-col gap-2">
