@@ -29,6 +29,9 @@ export default function CheckoutPage() {
   const [variants, setVariants] = useState<Variant[]>([]);
   const [loading, setLoading] = useState(false);
   const [currency, setCurrency] = useState<string>(SUPPORTED_CURRENCIES[0]);
+  const [fxRate, setFxRate] = useState<number | null>(null);
+  const [fxLoading, setFxLoading] = useState<boolean>(false);
+  const [fxError, setFxError] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -47,6 +50,23 @@ export default function CheckoutPage() {
   }, []);
 
   const selectedVariant = useMemo(() => variants.find(v => v.id === variantId) || null, [variants, variantId]);
+
+  // Cargar tipo de cambio cuando cambia la variante o la moneda seleccionada
+  useEffect(() => {
+    const curr = selectedVariant?.price?.currency;
+    if (!curr) { setFxRate(null); setFxError(null); return; }
+    if (curr === currency) { setFxRate(1); setFxError(null); return; }
+    setFxLoading(true);
+    setFxError(null);
+    fetch(`/api/rates?base=${encodeURIComponent(curr)}&symbols=${encodeURIComponent(currency)}`)
+      .then(r => r.json())
+      .then(json => {
+        const rate = json?.rates?.[currency];
+        if (typeof rate === "number") setFxRate(rate); else { setFxRate(null); setFxError("No hay tasa disponible"); }
+      })
+      .catch((e) => { console.error(e); setFxError("Error obteniendo tasa"); setFxRate(null); })
+      .finally(() => setFxLoading(false));
+  }, [selectedVariant?.price?.currency, currency]);
 
   const createCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,10 +134,23 @@ export default function CheckoutPage() {
       </form>
 
       {selectedVariant && selectedVariant.price && (
-        <div className="text-sm">
-          Precio seleccionado: {formatMoney(selectedVariant.price.amount, selectedVariant.price.currency)}
+        <div className="text-sm space-y-1">
+          <div>
+            Precio original: {formatMoney(selectedVariant.price.amount, selectedVariant.price.currency)}
+          </div>
           {selectedVariant.price.currency !== currency && (
-            <span className="opacity-70"> (sin conversión a {currency})</span>
+            <div>
+              {fxLoading && <span className="opacity-70">Convirtiendo…</span>}
+              {!fxLoading && fxError && (
+                <span className="text-red-600">{fxError} (mostrando moneda original)</span>
+              )}
+              {!fxLoading && !fxError && fxRate && (
+                <span>
+                  Precio convertido: {formatMoney(selectedVariant.price.amount * fxRate, currency)}
+                  <span className="opacity-70"> (tasa ~{fxRate.toFixed(4)})</span>
+                </span>
+              )}
+            </div>
           )}
         </div>
       )}
