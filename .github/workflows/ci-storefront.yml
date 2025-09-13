@@ -26,6 +26,12 @@ jobs:
       - name: Install deps
         run: npm ci
         working-directory: storefront
+      - name: Lint
+        run: npm run lint
+        working-directory: storefront
+      - name: Typecheck
+        run: npm run typecheck
+        working-directory: storefront
       - name: Build
         run: npm run build
         working-directory: storefront

@@ -12,7 +12,7 @@ Desarrollo
 
 2. Frontend:
    - cd storefront
-   - cp .env.local.example .env.local  # usar si existe; aquí ya configuramos NEXT_PUBLIC_SALEOR_API_URL
+   - cp .env.example .env.local
    - npm run dev
 
 URLs locales
