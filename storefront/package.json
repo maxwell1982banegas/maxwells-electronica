@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test:e2e": "playwright test",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -17,6 +18,7 @@
     "next": "15.5.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.47.2",
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",

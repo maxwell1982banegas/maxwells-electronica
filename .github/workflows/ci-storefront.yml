@@ -35,3 +35,25 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: storefront
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'storefront/package-lock.json'
+      - name: Install deps
+        run: npm ci
+        working-directory: storefront
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        working-directory: storefront
+      - name: Run E2E tests
+        run: npx playwright test
+        working-directory: storefront
